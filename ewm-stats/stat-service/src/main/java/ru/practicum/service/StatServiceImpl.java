@@ -12,7 +12,6 @@ import ru.practicum.repository.StatRepository;
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -34,7 +33,7 @@ public class StatServiceImpl implements StatService {
     @Override
     public List<ViewStats> getStats(LocalDateTime start, LocalDateTime end, List<String> uris, Boolean unique) {
         if (uris == null || uris.isEmpty()) {
-            return Collections.emptyList();
+            return new ArrayList<>(statRepository.getStatsAll(start, end));
         }
         if (unique) {
             return new ArrayList<>(statRepository.getStatsUnique(start, end, uris));
