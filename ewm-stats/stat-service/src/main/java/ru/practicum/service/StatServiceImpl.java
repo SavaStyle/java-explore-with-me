@@ -27,7 +27,6 @@ public class StatServiceImpl implements StatService {
     public EndpointHitDto saveStat(EndpointHitDto dto) {
         ObjectMapper mapper = new ObjectMapper();
         mapper.registerModule(new JavaTimeModule());
-        //   List<ViewStats> view = getStats();
         return mapper.convertValue(
                 statRepository.save(mapper.convertValue(dto, EndpointHit.class)),
                 EndpointHitDto.class);

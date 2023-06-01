@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import ru.practicum.EndpointHitDto;
 import ru.practicum.ViewStats;
+import ru.practicum.exception.BadRequestException;
 import ru.practicum.service.StatService;
 
 import javax.validation.Valid;
@@ -31,6 +32,9 @@ public class StatController {
                                     @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime end,
                                     @RequestParam(required = false) List<String> uris,
                                     @RequestParam(defaultValue = "false") Boolean unique) {
+        if (end.isBefore(start)) {
+            throw new BadRequestException("Неверные датамы начала и конца диапазона времени");
+        }
         return statService.getStats(start, end, uris, unique);
     }
 }
