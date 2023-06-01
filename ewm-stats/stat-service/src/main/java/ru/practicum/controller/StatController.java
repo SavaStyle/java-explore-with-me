@@ -1,16 +1,19 @@
 package ru.practicum.controller;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import ru.practicum.EndpointHitDto;
-import ru.practicum.model.ViewStats;
+import ru.practicum.ViewStats;
 import ru.practicum.service.StatService;
 
+import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 public class StatController {
@@ -18,7 +21,8 @@ public class StatController {
 
     @PostMapping("/hit")
     @ResponseStatus(HttpStatus.CREATED)
-    public EndpointHitDto create(@RequestBody EndpointHitDto endpointHitDto) {
+    public EndpointHitDto create(@Valid @RequestBody EndpointHitDto endpointHitDto) {
+        log.info("Сохранение информации о запросе {}", endpointHitDto.toString());
         return statService.saveStat(endpointHitDto);
     }
 

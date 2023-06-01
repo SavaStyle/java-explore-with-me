@@ -4,10 +4,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import ru.practicum.EndpointHit;
 import ru.practicum.EndpointHitDto;
+import ru.practicum.ViewStats;
 import ru.practicum.exception.BadRequestException;
-import ru.practicum.model.EndpointHit;
-import ru.practicum.model.ViewStats;
 import ru.practicum.repository.StatRepository;
 
 import javax.transaction.Transactional;
@@ -27,8 +27,10 @@ public class StatServiceImpl implements StatService {
     public EndpointHitDto saveStat(EndpointHitDto dto) {
         ObjectMapper mapper = new ObjectMapper();
         mapper.registerModule(new JavaTimeModule());
+        //   List<ViewStats> view = getStats();
         return mapper.convertValue(
-                statRepository.save(mapper.convertValue(dto, EndpointHit.class)), EndpointHitDto.class);
+                statRepository.save(mapper.convertValue(dto, EndpointHit.class)),
+                EndpointHitDto.class);
     }
 
     @Override
