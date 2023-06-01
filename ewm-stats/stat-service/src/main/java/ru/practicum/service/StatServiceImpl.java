@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import ru.practicum.EndpointHit;
 import ru.practicum.EndpointHitDto;
 import ru.practicum.ViewStats;
-import ru.practicum.exception.BadRequestException;
 import ru.practicum.repository.StatRepository;
 
 import javax.transaction.Transactional;
@@ -34,9 +33,6 @@ public class StatServiceImpl implements StatService {
 
     @Override
     public List<ViewStats> getStats(LocalDateTime start, LocalDateTime end, List<String> uris, Boolean unique) {
-        if (end.isBefore(start)) {
-            throw new BadRequestException("Параметры запроса дат не верны");
-        }
         if (uris == null || uris.isEmpty()) {
             return new ArrayList<>(statRepository.getStatsAll(start, end));
         }
