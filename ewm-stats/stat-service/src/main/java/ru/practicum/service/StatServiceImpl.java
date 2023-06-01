@@ -35,7 +35,7 @@ public class StatServiceImpl implements StatService {
     @Override
     public List<ViewStats> getStats(LocalDateTime start, LocalDateTime end, List<String> uris, Boolean unique) {
         if (end.isBefore(start)) {
-            throw new BadRequestException("параметры запроса дат не верны");
+            throw new BadRequestException("Параметры запроса дат не верны");
         }
         if (uris == null || uris.isEmpty()) {
             return new ArrayList<>(statRepository.getStatsAll(start, end));
