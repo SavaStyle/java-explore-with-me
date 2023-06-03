@@ -1,5 +1,7 @@
 package ru.practicum.explorewithme.controller;
 
+import lombok.AccessLevel;
+import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,10 +15,11 @@ import javax.validation.Valid;
 
 @Slf4j
 @RestController
+@FieldDefaults(level = AccessLevel.PRIVATE)
 @RequestMapping("/admin/categories")
 @Validated
 public class AdminCategoryController {
-    CategoryService service;
+    final CategoryService service;
 
     @Autowired
     public AdminCategoryController(CategoryService service) {

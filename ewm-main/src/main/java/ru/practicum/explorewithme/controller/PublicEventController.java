@@ -1,5 +1,7 @@
 package ru.practicum.explorewithme.controller;
 
+import lombok.AccessLevel;
+import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -24,9 +26,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/events")
 @Validated
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class PublicEventController {
-    EventService eventService;
-    StatClient client;
+    final EventService eventService;
+    final StatClient client;
 
     @Autowired
     public PublicEventController(EventService eventService, @Value("${STATS_SERVER_URL:http://localhost:9090}") String serverUrl) {

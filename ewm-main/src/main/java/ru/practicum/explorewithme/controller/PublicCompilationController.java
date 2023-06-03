@@ -1,5 +1,7 @@
 package ru.practicum.explorewithme.controller;
 
+import lombok.AccessLevel;
+import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -17,8 +19,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/compilations")
 @Validated
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class PublicCompilationController {
-    CompilationService compilationService;
+    final CompilationService compilationService;
 
     @Autowired
     public PublicCompilationController(CompilationService compilationService) {

@@ -1,5 +1,7 @@
 package ru.practicum.explorewithme.controller;
 
+import lombok.AccessLevel;
+import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -18,8 +20,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/categories")
 @Validated
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class PublicCategoryController {
-    CategoryService service;
+    final CategoryService service;
 
     @Autowired
     public PublicCategoryController(CategoryService service) {

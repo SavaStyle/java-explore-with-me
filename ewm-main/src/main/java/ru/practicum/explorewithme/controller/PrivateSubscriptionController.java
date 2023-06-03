@@ -1,5 +1,7 @@
 package ru.practicum.explorewithme.controller;
 
+import lombok.AccessLevel;
+import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -22,9 +24,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/users/{userId}/subscriptions")
 @Validated
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class PrivateSubscriptionController {
 
-    SubscriptionService subscriptionService;
+    final SubscriptionService subscriptionService;
 
     @Autowired
     public PrivateSubscriptionController(SubscriptionService subscriptionService) {

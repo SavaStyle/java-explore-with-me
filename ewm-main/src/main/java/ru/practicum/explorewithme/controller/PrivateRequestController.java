@@ -1,5 +1,7 @@
 package ru.practicum.explorewithme.controller;
 
+import lombok.AccessLevel;
+import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
@@ -13,8 +15,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/users/{userId}/requests")
 @Validated
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class PrivateRequestController {
-    RequestService requestService;
+    final RequestService requestService;
 
     public PrivateRequestController(RequestService requestService) {
         this.requestService = requestService;

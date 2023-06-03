@@ -1,5 +1,7 @@
 package ru.practicum.explorewithme.controller;
 
+import lombok.AccessLevel;
+import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,9 +28,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/users/{userId}/events")
 @Validated
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class PrivateEventController {
-    EventService eventService;
-    RequestService requestService;
+    final EventService eventService;
+    final RequestService requestService;
 
     @Autowired
     public PrivateEventController(EventService eventService, RequestService requestService) {
