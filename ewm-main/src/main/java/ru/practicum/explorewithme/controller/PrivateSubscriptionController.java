@@ -44,7 +44,7 @@ public class PrivateSubscriptionController {
     @DeleteMapping("/{subscribeTarget}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void removeSubscription(@PathVariable Long userId, @PathVariable Long subscribeTarget) {
-        log.trace("Пользователь {} подписывается на {}", userId, subscribeTarget);
+        log.trace("Пользователь {} отписывается от {}", userId, subscribeTarget);
         subscriptionService.removeSubscription(subscribeTarget, userId);
     }
 
